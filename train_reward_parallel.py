@@ -228,7 +228,7 @@ if __name__ == "__main__":
     import random
 
     # start a new wandb run to track this script
-    wandb.login(key="d1404233fdb9f8caf6f207dae8cf113a180e3882")
+    wandb.login(key="YOUR_WANDB_KEY")
     run = None
     '''
     run = wandb.init(
