@@ -9,17 +9,17 @@ dir_names = ['harmless-base/', 'helpful-base/', 'helpful-online/', 'helpful-reje
 # Open the gzip file in read mode
 def view_data():
     for dir in dir_names:
-        # with gzip.open("/raid/czy/datasets/hh-rlhf/"+dir+'train.jsonl.gz', 'rt', encoding='utf-8') as f:
-        with gzip.open("/raid/czy/datasets/hh-rlhf/"+dir+'test.jsonl.gz', 'rt', encoding='utf-8') as f:
+        # with gzip.open("/raid/datasets/hh-rlhf/"+dir+'train.jsonl.gz', 'rt', encoding='utf-8') as f:
+        with gzip.open("/raid/datasets/hh-rlhf/"+dir+'test.jsonl.gz', 'rt', encoding='utf-8') as f:
             for i,line in enumerate(f):
                 print(f"===================={dir}=====================")
                 data = json.loads(line)
                 print(data)
                 if i>0:
                     break
-    with open("/raid/czy/datasets/hh-rlhf/test_full.jsonl", 'w') as f_out:            
+    with open("/raid/datasets/hh-rlhf/test_full.jsonl", 'w') as f_out:            
         for dir in dir_names:
-            with gzip.open("/raid/czy/datasets/hh-rlhf/"+dir+'test.jsonl.gz', 'rt', encoding='utf-8') as f:
+            with gzip.open("/raid/datasets/hh-rlhf/"+dir+'test.jsonl.gz', 'rt', encoding='utf-8') as f:
                 for i,line in enumerate(f):
                     data = json.loads(line)
                     f_out.write(line)
@@ -51,7 +51,7 @@ print(f'runs/{now.strftime("%Y_%m_%d_%H_%M")}_log.txt')
 
 logging.basicConfig(filename=f'./runs/{now.strftime("%Y_%m_%d_%H_%M")}_log.txt', level=logging.WARNING, filemode='w', force=True)
 
-wandb.login(key="d1404233fdb9f8caf6f207dae8cf113a180e3882")
+wandb.login(key="YOUR_WANDB_KEY")
 run = wandb.init(
         # set the wandb project where this run will be logged
         project="spike-reward",
